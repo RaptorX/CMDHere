@@ -1,5 +1,17 @@
+#SingleInstance force
+#Include lib\ScriptObj\scriptobj.ahk
 
 locations := ["DesktopBackground\Shell", "Directory\Background\shell", "Directory\shell"]
+global script := {base			: script
+				 ,name			: regexreplace(A_ScriptName, "\.\w+")
+				 ,version		: "0.1.0"
+				 ,author		: "Isaias Baez"
+				 ,email			: "graptorx@gmail.com"
+				 ,homepagetext	: ""
+				 ,homepagelink	: ""
+				 ,resfolder		: A_AppData "\" regexreplace(A_ScriptName, "\.\w+") "\res"
+				 ,iconfile		: A_AppData "\" regexreplace(A_ScriptName, "\.\w+") "\res\main.ico"
+				 ,config 		: A_AppData "\" regexreplace(A_ScriptName, "\.\w+") "\settings.ini"}
 
 RegRead, installed, % "HKCU\Software\Classes\" locations[1] "\cmdHere"
 
@@ -30,4 +42,4 @@ else
 	MsgBox, % 0x40, % "Installation Finished"
 				  , % "CMD Here has been installed"
 }
-return
+ExitApp, 0
